@@ -12,7 +12,7 @@ create table Usuario (
     nome				varchar(60),
     email				varchar(60),
     senha				varchar(20),
-    CNPJ				bigint not null,
+    cpf 				bigint not null,
     primary key 		(CPF),
     constraint			fk_CNPJ_Usuario foreign key (CNPJ) references Empresa(CNPJ)
 );
