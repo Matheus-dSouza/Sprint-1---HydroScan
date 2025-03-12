@@ -8,23 +8,23 @@ create table Empresa (
 );
 
 create table Usuario (
-	CPF					bigint not null,
+    fk_CNPJ				bigint not null,
     nome				varchar(60),
     email				varchar(60),
     senha				varchar(20),
-    cpf 				bigint not null,
-    primary key 		(CPF),
-    constraint			fk_CNPJ_Usuario foreign key (CNPJ) references Empresa(CNPJ)
+    CPF 				bigint not null,
+    primary key 			(CPF),
+    constraint				fk_CNPJ_Usuario foreign key (fk_CNPJ) references Empresa(CNPJ)
 );
 
 create table Represa (
-	idRepresa			int not null auto_increment,
-    nivelAgua			int not null,
+    idRepresa				int not null auto_increment,
+    nivelAgua				int not null,
     volume				int not null,
-    dataHora			datetime,
-    CNPJ				bigint not null,
-    primary key			(idRepresa),
-    constraint 			fk_CNPJ_Represa foreign key (CNPJ) references Empresa(CNPJ)
+    dataHora				datetime,
+    fk_CNPJ				bigint not null,
+    primary key				(idRepresa),
+    constraint 				fk_CNPJ_Represa foreign key (fk_CNPJ) references Empresa(CNPJ)
 );
 
 insert into Empresa (CNPJ, nome)
@@ -34,7 +34,7 @@ values				(12345678000190, 'Empresa A'),
                     (45678901000123, 'Empresa D'),
                     (45678901000223, 'Empresa E');
                     
-insert into Usuario (CPF, nome, email, senha, CNPJ)
+insert into Usuario (CPF, nome, email, senha, fk_CNPJ)
 values				(12345678901, 'Carlos Maria', 'carlos.maria@gmail.com', 'abcdef123', 12345678000190),
 					(23456789012, 'José Félix', 'jose.felix@gmail.com', 'bcdefg456', 23456789000101),
                     (34567890123, 'João Pedro', 'joao.pedro@gmail.com', 'cdefgh789', 34567890000212),
@@ -42,7 +42,7 @@ values				(12345678901, 'Carlos Maria', 'carlos.maria@gmail.com', 'abcdef123', 1
                     (56789012345, 'Fernanda Torres', 'fernanda.torres@gmail.com', 'efghij345', 45678901000223),
                     (67890123456, 'Marcos Felipe', 'marcos.felipe@gmail.com', 'fghijk678', 45678901000223);
                     
-insert into Represa (nivelAgua, volume, dataHora, CNPJ)
+insert into Represa (nivelAgua, volume, dataHora, fk_CNPJ)
 values				(200, 1000, '2024-01-01 12:00:00', 12345678000190),
 					(400, 3000, '2024-02-03 12:00:00', 23456789000101),
                     (350, 5000, '2024-02-03 13:45:00', 34567890000212),
