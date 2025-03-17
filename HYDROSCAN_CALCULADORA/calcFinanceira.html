@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de GW/h</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <header>
+        <h1><img src="Logo.png" height="150px"></h1>
+    </header>
+    <section>
+        <label for="ipt_nivelAgua">Insira o nivel atual de água na represa (em metros): </label>
+        <input id="ipt_nivelAgua" type="number">
+
+        <br>
+
+        <label for="ipt_valorMW">Insira o valor de venda desejado por MW no varejo:</label>
+        <input id="ipt_valorMW" type="number" placeholder="O valor médio é R$260">
+
+        <br><br>
+
+        <button onclick="calcSituacao()">Calcular situação</button>
+
+        <br>
+
+        <p id="p_nivelAgua"></p>
+
+        <p id="p_volume"></p>
+
+        <p id="p_potencia"></p>
+
+        <p id="p_potenciaDinheiro"></p>
+    </section>
+    <footer>
+        <p>&copy;Hydroscan</p>
+    </footer>
+</body>
+<script src="script_calcGrupo.js">
+    
+</script>
+
+</html>
