@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <p>Insira o nível da água no reservatório em m:</p>
+    <input type="number" id="ipt_nivelAgua">
+    <p>Insira a área aproximada do reservatório em m²:</p>
+    <input type="number" id="ipt_areaRes">
+    <p>Insira o preço do MWh:</p>
+    <input type="number" id="ipt_precoMWh" placeholder="O preço indicado pelo MLE é de 240 reais por MWh"> <br> <br>
+    <button onClick="calcular()">Calcular volume disponível</button> <br>
+    <p id="resposta"></p>
+</body>
+
+<script>
+    function calcular() {
+        var nivelAgua = Number(ipt_nivelAgua.value);
+        var areaRes = Number(ipt_areaRes.value);
+        var precoMWh = Number(ipt_precoMWh.value);
+        var nivelMin = 200;
+        var nivelMax = 300;
+        var volume = Number(nivelAgua * areaRes);
+        var energia = Number(volume * 1000 / (3600 * 1000));
+        var receita = Number(energia * precoMWh);
+
+        if (nivelAgua >= nivelMin && nivelAgua <= nivelMax) {
+            resposta.innerHTML = `O volume disponível é de ${volume}m³, sendo suficiente para produzir ${energia.toFixed(3)}MWh e gerar uma receita bruta de R$${receita.toFixed(2)}.`
+        }
+        else {
+            resposta.innerHTML = `Nível da água inválido. Valores de segurança estão entre 200m e 300m.`
+        }
+    }
+</script>
+
+</html>
