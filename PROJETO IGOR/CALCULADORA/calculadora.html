@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo Energia Itaipu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cálculo de Energia Máxima da Usina de Itaipu</h2>
+    <label for="altura">Altura do Reservatório (m):</label>
+    <input type="number" id="ipt_altura" placeholder="Digite a altura">
+    <br>
+    <label for="operacao">% de Operação da Usina:</label>
+    <input type="number" id="ipt_operacao" placeholder="Digite a % de operação" min="0" max="100">
+    <br>
+    <button onclick="calcular()">Calcular Energia</button>
+
+    <div id="resultado"></div>
+    <script>
+
+
+        function calcular() {
+            var altura = Number(ipt_altura.value); // Obtendo valor da altura
+            var operacao = ipt_operacao.value; // Obtendo valor da operação
+        
+            var largura = 7700; // Largura fixa em metros
+            var comprimento = 190; // Comprimento fixo em metros
+            var densidadeAgua = 1000; // kg/m³
+            var gravidade = 9.81; // m/s²
+            
+            var operacao = Number(operacao) / 100; // Converter % para decimal
+
+            var valoresValidos = true;
+
+
+
+            if  (operacao < 0 || operacao > 1){
+                valoresValidos = false}
+
+
+
+
+            if (valoresValidos = false) {
+                resultado.innerHTML = "Por favor, insira valores válidos."; // Alterando diretamente o conteúdo do resultado
+            } else {
+
+
+
+                var volume = largura * comprimento * altura; // m³
+                var massa = volume * densidadeAgua; // kg
+                var energiaPotencial = massa * gravidade * altura; // Joules
+                var energiaGWh = (energiaPotencial * operacao) / (3.6 * 10**12); // Convertendo para GWh
+
+
+                
+                resultado.innerHTML = "Energia Gerada: " + energiaGWh + " GWh"; // Alterando diretamente o conteúdo do resultado
+            }
+        }
+    </script>
+</body>
+</html>
