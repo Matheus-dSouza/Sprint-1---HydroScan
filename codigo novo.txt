@@ -5,8 +5,8 @@
 "entrada e saida" do ultrassom do sensor */
 const int PINO_TRIGGER = 12;
 const int PINO_ECHO = 13;
-float labelMax = 225.0; // Variável global para labelMax
-float labelMin = 220.0; // Variável global para labelMin
+float labelMax = 220.0; // Variável global para labelMax
+float labelMin = 190.0; // Variável global para labelMin
 
 /* informando a biblioteca os parametros 
 necessarios para seu funcionamento */
@@ -24,8 +24,8 @@ void loop() {
   float distancia = sensor.distance() + 200;
 
   /* Limitando a distância max em 100cm */
-  if (distancia > 250.0) {
-    distancia = 250.0;
+  if (distancia > 230.0) {
+    distancia = 230.0;
   }
   
   /* Capturando os dados para o Serial Plotter */
