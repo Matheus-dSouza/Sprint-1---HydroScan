@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="ipt_nivelAgua">Insira o atual nível de agua (em metros): </label>
+    <input id="ipt_nivelAgua" type="number">
+    <br>
+    <label for="ipt_valorMW">Valor de venda por MW desejado:</label>
+    <input id="ipt_valorMW" type="number" placeholder="O valor médio é R$260">
+    <br><br>
+    <button onclick="calculoGW()">Ver estimativa</button>
+    <br>
+    <h3 id="h3_nivelAgua"></h3>
+    <h3 id="h3_volume"></h3>
+    <h3 id="h3_valorFinal"></h3>
+</body>
+
+</html>
+<script>
+    function calculoGW() {
+
+        // Constantes definidas pelo CLIENTE 
+
+        var volume_max = 30 * (10 ** 9)
+        var potencia_max = 14000
+        var nivelAgua_max = 220
+
+        // valores input 
+
+        var nivelAgua = Number(ipt_nivelAgua.value)
+        var valorMW = Number(ipt_valorMW.value)
+
+        // calculos usando regra de 3
+
+        var volumeAtual = ((nivelAgua * volume_max) / (nivelAgua_max)) / (10 ** 9)
+        var potenciaGerada = ((nivelAgua * potencia_max) / (nivelAgua_max))
+
+        // quantidade de dinheiro gerada por segundo
+        var valorFinal = valorMW * potenciaGerada
+
+        // displays
+        h3_nivelAgua.innerHTML = `${potenciaGerada.toFixed(2)} MWh gerados`
+
+        h3_volume.innerHTML = `Volume atual de ${volumeAtual.toFixed(3)} bilhões de m³`
+
+        h3_valorFinal.innerHTML = `Potencia gerada convertida em reais: R$${valorFinal.toFixed(2)}`
+
+        // checagem de dados
+        if (nivelAgua > 225) {
+            alert("A quantidade de água está além da capacidade da usina!")
+        } else if (nivelAgua < 190) {
+            alert("A quantidade de água está abaixo da capacidade mínima")
+        }
+    }
+</script>
