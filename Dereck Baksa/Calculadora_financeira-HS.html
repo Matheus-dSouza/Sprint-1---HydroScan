@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <h1>Inserir dados para calcular potencia gerada convertida em reais </h1>
+    <h3>Inserir nível da água em metros</h3>
+    <input type="text" id="ipt_nivelDaAgua">
+    <h3>Inserir o valor do megawatt em reais</h3>
+    <input type="text" id="ipt_valorDoMegawatt">
+    <button onclick="calcularValor()">Calcular</button>
+    <div id="div_nivelAgua"></div>
+
+</body>
+<script>
+var volumeMaximoRepresa = 30 * (10 ** 9);
+
+var potenciaMaximaRepresa = 14000;
+
+var nivelAguaMaximaRepresa = 220;
+    function calcularValor() {
+        var nivelAgua = Number(ipt_nivelDaAgua.value);
+
+        var valorMW = Number(ipt_valorDoMegawatt.value);
+
+        var volumeAtual = ((nivelAgua * volumeMaximoRepresa) / (nivelAguaMaximaRepresa)) / (10 ** 9);
+
+        var potenciaGerada = ((nivelAgua * potenciaMaximaRepresa) / (nivelAguaMaximaRepresa));
+
+        var porcentagemTurbinas = ((100 * potenciaGerada) / (potenciaMaximaRepresa));
+
+        var potenciaMonetaria = valorMW * potenciaGerada;
+
+
+      
+        if (porcentagemTurbinas > 115) {
+            alert('Turbinas operando em potência excedente a o limite, risco de danos estruturais')
+        } else if (porcentagemTurbinas > 100 && porcentagemTurbinas <= 115) {
+            alert('O nível da água está acima do limite da usina. Turbinas operando em uma potência maior que o recomendo')
+        } else if (nivelAgua < 190) {
+            alert('O nível da água está abaixo do recomendado. Recomendação: diminua a potência das turbinas para o acumulo da água')
+        } else {
+
+            div_nivelAgua.innerHTML = `${potenciaGerada.toFixed(2)} MWh gerados<br>` +
+            `Volume atual de ${volumeAtual.toFixed(3)} bilhões de m³<br>` +
+            `Turbinas operando a ${porcentagemTurbinas.toFixed(1)}%<br>` +
+            `Potencia gerada convertida em reais: R$${potenciaMonetaria.toFixed(2)}`
+        }
+        }
+</script>
+
+</html>
