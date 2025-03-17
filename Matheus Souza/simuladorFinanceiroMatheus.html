@@ -4,19 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador Financeiro</title>
+    <title>Calculadora Financeira</title>
 </head>
 
-<body>
-    <p>Insira o nível da água no reservatório em m:</p>
-    <input type="number" id="ipt_nivelAgua">
-    <p>Insira a área aproximada do reservatório em m²:</p>
-    <input type="number" id="ipt_areaRes">
-    <p>Insira o preço do MWh:</p>
-    <input type="number" id="ipt_precoMWh" placeholder="O preço indicado pelo MLE é de 240 reais por MWh"> <br> <br>
-    <button onClick="calcular()">Calcular volume disponível</button> <br>
-    <p id="resposta"></p>
+<body style="background-color: #005e6a;">
+    <div class="header">
+        <h2>Calculadora Financeira HydroScan</h2>
+    </div>
+    <div class="content">
+        <p>Insira o nível da água no reservatório em m:</p>
+        <input type="number" id="ipt_nivelAgua">
+        <p>Insira a área aproximada do reservatório em m²:</p>
+        <input type="number" id="ipt_areaRes">
+        <p>Insira o preço do MWh:</p>
+        <input type="number" id="ipt_precoMWh" placeholder="MLE sugere R$240/MWh"> <br> <br>
+        <button onClick="calcular()">Calcular volume disponível</button> <br>
+        <p id="resposta"></p>
+    </div>
 </body>
+
+<style>
+    .header {
+        justify-content: center;
+        text-align: center;
+        margin-top: 200px;
+        font-style: italic;
+    }
+
+    .content {
+        justify-content: center;
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
 
 <script>
     function calcular() {
